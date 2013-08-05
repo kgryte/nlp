@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/env python
 
 """script.py
 
@@ -11,7 +11,7 @@
 	do so from the Python interpreter and make sure that you are in the same directory.
 """
 
-# 
+#
 
 import pandas as pd
 import data as dat
