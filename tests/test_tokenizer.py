@@ -87,20 +87,6 @@ class TestTokenize:
         output = self._tokenizer.tokenize(text)
         eq_(_output, output)
 
-    def test_url_input(self):
-        """Test"""
-
-        import urllib
-        sock = urllib.urlopen('http://www.bbc.co.uk/news/world-europe-23283684')
-        htmlSource = sock.read()
-        sock.close()
-        print htmlSource
-
-        tokens = self._tokenizer.tokenize(htmlSource)
-
-        eq_(1,1)
-
-
 
 
 class TestPrivateMethods:
