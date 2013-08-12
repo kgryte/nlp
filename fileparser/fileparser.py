@@ -45,7 +45,7 @@ class FileParser(object): # inherit from the base object
         soup = BeautifulSoup(document)
 
         # Remove various tags:
-        [s.extract() for s in soup(['iframe', 'script', 'nav', 'style', 'noscript', 'header', 'footer', 'li'])]
+        tmp = [s.extract() for s in soup(['iframe', 'script', 'nav', 'style', 'noscript', 'header', 'footer', 'li'])]
 
         # Remove comments:
         comments = soup.findAll(text=lambda text:isinstance(text, Comment))

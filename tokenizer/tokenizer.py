@@ -30,6 +30,8 @@ __version__ = '0.1.0'
 import re               # regular expression module
 import htmlentitydefs   # HTML tag definitions
 
+print('running')
+
 # Define exceptions; we first define a base class which inherits from 'exception' and then derive any further errors from this base class. This is so we can name the errors and provide any tailored error handling:
 class TokenizerError(Exception):
     """Base class for errors in the tokenize module"""
@@ -81,7 +83,7 @@ class Tokenizer(object): # inherit from the base object
     _regex_sentence = re.compile(r""" *([\.\?!][\'"\)\]]*) *""")
 
     # Define the initialization method:
-    def __init__(self):
+    def __init__(self): #__ = reserved - special syntax for python
         """Initialize instance properties"""
 
         # Remove all HTML markup?
@@ -90,7 +92,7 @@ class Tokenizer(object): # inherit from the base object
         # Split text into individual sentences?
         self._splitSentences = True
 
-    def tokenize(self, string):
+    def tokenize(self, string): #public method
         """Tokenize a string"""
 
         # Convert the string to unicode:
@@ -98,7 +100,7 @@ class Tokenizer(object): # inherit from the base object
 
         # Convert any HTML entities to unicode:
         text = self._html2unicode(text)
-
+        
         # Remove HTML tags:
         if self._removeHTML:
             text = self.__removeHTML(text)
@@ -117,7 +119,7 @@ class Tokenizer(object): # inherit from the base object
         return tokens
 
     # Unicode conversion:
-    def _unicode(self, string):
+    def _unicode(self, string): #"private" method (suggesting that it might change in the future) 
         """Convert a string to unicode"""
 
         try:

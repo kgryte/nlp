@@ -22,6 +22,8 @@ naive-coverage : the directory for HTML coverage output
 Be sure to document and write new unit tests for any modifications made to the package.
 """
 
+
+
 # Import various nose tools for testing:
 from nose.tools import eq_, raises
 

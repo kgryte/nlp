@@ -7,6 +7,8 @@ To run this script, ensure that you have set your PYTHONPATH:
 
 export PYTHONPATH=$PYTHONPATH:/home/{user}/Coding/Projects/nlp:/home/{user}/Coding/Projects/nlp/tokenizer:/home/{user}/Coding/Projects/nlp/naive:/home/{user}/Coding/Projects/nlp/fileparser
 
+export PYTHONPATH=$PYTHONPATH:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master/tokenizer:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master/naive:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master/fileparser
+
 where {user} is your username. Note that the above paths are for a linux system and according to my sub-directory convention. Yours will inevitably be different.
 
 Once the paths are set, navigate to the 'nlp' directory in the Terminal and then
@@ -17,6 +19,16 @@ where the $ indicates the command prompt.
 
 Currently, the output is simply printed to the terminal.
 
+-I needed to install: 
+sudo easy_install pip
+sudo easy_install beautifulsoup4
+intalled Xcode from the Apple Store
+Xcode - preferences - download - install command line tools
+sudo easy_install pandas
+sudo pip install lxml
+sudo pip install html5lib
+sudo pip install nose
+sudo pip install coverage
 
 """
 
