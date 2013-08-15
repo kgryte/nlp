@@ -7,7 +7,7 @@ To run this script, ensure that you have set your PYTHONPATH:
 
 export PYTHONPATH=$PYTHONPATH:/home/{user}/Coding/Projects/nlp:/home/{user}/Coding/Projects/nlp/tokenizer:/home/{user}/Coding/Projects/nlp/naive:/home/{user}/Coding/Projects/nlp/fileparser
 
-export PYTHONPATH=$PYTHONPATH:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master/tokenizer:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master/naive:/Users/dionysiakiaraxifara/Documents/NLP/nlp-master/fileparser
+export PYTHONPATH=$PYTHONPATH:/Users/dionysiakiaraxifara/Documents/NLP/nlp:/Users/dionysiakiaraxifara/Documents/NLP/nlp/tokenizer:/Users/dionysiakiaraxifara/Documents/NLP/nlp/naive:/Users/dionysiakiaraxifara/Documents/NLP/nlp/fileparser
 
 where {user} is your username. Note that the above paths are for a linux system and according to my sub-directory convention. Yours will inevitably be different.
 
@@ -39,6 +39,7 @@ __version__ = '0.1.0'
 import fileparser as fp
 import tokenizer as tk
 import naive as nsa
+import pickle
 
 
 
@@ -52,8 +53,22 @@ parser = fp.FileParser()
 doc = parser.parse(url)
 
 # Run the document through the tokenizer:
-tokens = tk.Tokenizer().tokenize(doc)
+tokenizer = tk.Tokenizer() #initialize object
+tokenizer.filename = 'test.txt' #cannot do tok.filename('test.txt') because here we're redefining an attribute (assigning a value)
+tokenizer.tokenize(doc) #here we're calling a method which needs a parameter
 
-print tokens
+#print tokens
+
+with open('test.txt', 'rb') as f:
+	thedata = pickle.load(f)
+
+print(thedata)
+
+#len(thedata)
+#thedata[4][1:20]
+
+
+#write out to file: use python's way to save unicode to string
+#then read in file (which is an array of arrays) to do the SA
 
 

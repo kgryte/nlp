@@ -29,8 +29,9 @@ __version__ = '0.1.0'
 # Required modules:
 import re               # regular expression module
 import htmlentitydefs   # HTML tag definitions
+import pickle           # package that contains "dump" function
 
-print('running')
+#print('running')
 
 # Define exceptions; we first define a base class which inherits from 'exception' and then derive any further errors from this base class. This is so we can name the errors and provide any tailored error handling:
 class TokenizerError(Exception):
@@ -86,11 +87,16 @@ class Tokenizer(object): # inherit from the base object
     def __init__(self): #__ = reserved - special syntax for python
         """Initialize instance properties"""
 
+        self._filename = ''
+
         # Remove all HTML markup?
         self._removeHTML = True
 
         # Split text into individual sentences?
         self._splitSentences = True
+
+        # Save the tokens to a file?
+        self._saveFLG = False
 
     def tokenize(self, string): #public method
         """Tokenize a string"""
@@ -115,6 +121,9 @@ class Tokenizer(object): # inherit from the base object
         tokens = []
         for string in text:
             tokens.append(self._regex.findall(string))
+
+        if self._saveFLG:
+            self._saveToFile(tokens)
 
         return tokens
 
@@ -187,3 +196,41 @@ class Tokenizer(object): # inherit from the base object
 
         return self._regex_sentence.split(text)
 
+    def _saveToFile(self, tokens):
+        """Save tokens to file """
+
+        text = []
+
+        for sentence in range(0,(len(tokens))): #range is (incl,excl) so this will go to len-1;
+            text.append([]) 
+            for word in range(0,len(tokens[sentence])):
+                text[sentence].append( tokens[sentence][word].encode('utf8') )
+
+        with open(self._filename, 'w') as f:
+            #f.write(str(text))
+            pickle.dump(text,f)
+
+    @property
+    def filename(self):
+        """Getter:
+        """
+        return self._filename
+
+    @filename.setter
+    def filename(self, filename):
+        """Setter: 
+        """
+
+        print filename
+
+        if not isinstance(filename, str):
+            raise InvalidInputError("filename must be of type 'str'")
+
+        self._filename = filename
+        self._saveFLG = True
+
+
+
+
+
+        

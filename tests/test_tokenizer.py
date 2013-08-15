@@ -134,3 +134,47 @@ class TestPrivateMethods:
         """html2unicode conversion should gracefully handle unknown entities"""
         tag = '&thisismymadeupentity;' # integer too large
         eq_(self._tokenizer._html2unicode(tag), unicode(tag))
+
+class TestOutputToFile:
+    """Test token output to file"""
+
+    def setUp(self):
+        """For each test, run some initialization code; e.g., initialize a class instance
+        """
+        self._tokenizer = Tokenizer()
+
+    def tearDown(self):
+        """After each test, run some completion code; e.g., remove an initialized class instance
+        """
+        del self._tokenizer
+
+    def test_write_to_file(self):
+        """Test whether tokens have been written to file"""
+
+        filename = "test.txt"
+        output = [['Hello', 'Denise'], ['!']]
+        data = [[unicode('Hello'), unicode('Denise')], [unicode('!')]]
+
+
+        self._tokenizer.filename  = filename
+        self._tokenizer._saveToFile(data)
+
+        try:
+            with open(filename, 'wb') as f:
+                pickle.dump(data, f)
+
+            with open(filename, 'rb') as f:
+                _output = pickle.load(f)
+
+            eq_(_output, output)
+
+        except:
+            raise
+
+
+
+
+
+
+
+
